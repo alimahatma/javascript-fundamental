@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Demo Event HTML</title>
+</head>
+<body>
+
+    <div onmouseover="mOver(this)" onmouseout="mOut(this)"
+        style="background-color: #d94a38; width:120px; height:20px; padding:40px;">
+        Mouse Over Me
+    </div>
+
+    <div onmousedown="mDown(this)" onmouseup="mUp(this)"
+    style="background-color: violet; width: 120px; height: 20px; padding: 40px;">
+    Click Me
+    </div>
+    
+
+    <script>
+        //Mouse Over dan mose Out
+        function mOver(obj) {
+            obj.innerHTML = "Thanks You";
+        }
+        function mOut (obj) {
+            obj.innerHTML = "Mouse Over Me";
+        }
+
+        //Mouse Down and Mouse UP
+
+        function mDown(obj) {
+            obj.style.backgroundColor = "#1ec5e5";
+            obj.innerHTML = "Relese Me!";
+        }
+
+        function mUp(obj) {
+            obj.style.backgroundColor = "violet";
+            obj.innerHTML = "Thaks You";
+        }
+    </script>
+</body>
+</html>
