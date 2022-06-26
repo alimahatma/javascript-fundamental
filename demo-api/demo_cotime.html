@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Count Time</title>
+</head>
+<body>
+    <h1>Javascrip start & stop cout</h1>
+    <p>Hitung angka : <b><output id="result"></output></b></p>
+    <button onclick="startWorker()">MULAI</button>
+    <button onclick="stopWorker()">BERHENTI</button>
+
+    <script>
+        var w;
+
+        function startWorker() {
+            if (typeof(Worker) !== "undefined") {
+                if (typeof(w) == "undefined"){
+                    w = new Worker("demo_workers.js");
+                }
+                w.onmessage = function(event) {
+                    document.getElementById("result").innerHTML = event.data;
+                };
+            } else {
+                document.getElementById("result").innerHTML = "Sorry! No web worker";
+            }
+        }
+
+        function stopWorker() {
+            w.terminate();
+            w = undefined;
+        }
+
+    </script>
+</body>
+</html>

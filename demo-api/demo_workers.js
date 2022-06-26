@@ -1,9 +1,9 @@
-let i = 0;
+let i =0;
 
-function timedCount() {
-    i++;
+function timeCount() {
+    i ++;
     postMessage(i);
-    setTimeout("timeCount ()", 100);
+    setTimeout('timeCount()', 500);
 }
 
-timedCount();
+timeCount();
