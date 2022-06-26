@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Demo DOM node List</title>
+    </head>
+    <body>
+        <p>Hello Gibran</p>
+        <p>Hello PAPUK</p>
+        <p>Hello Somebody</p>
+        <p>Hello familiy</p>
+
+        <h1>Tekan Tombok Untuk Mengubah Warna</h1>
+        <button onclick="myFunction()"> Ubah Warna </button>
+        
+
+        <script>
+            function myFunction() {
+                const nodeList = document.querySelectorAll("p");
+                for (let warna =0; warna < nodeList.length; warna++) {
+                    nodeList[warna].style.color = "blue";
+                }
+            }
+        </script>
+    </body>
+</html>
