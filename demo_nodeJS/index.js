@@ -1,12 +1,18 @@
-// console.log("Hello WPU");
+//core modules
+// const fs = require('fs');
 
-// const cetakNama = (nama) => `Hi, nama saya ${nama}`;
-// console.log(cetakNama('Gbran Raqqila Firaz'));
+// //import local modules
+// const cetakNama = require('./coba');
 
-// console.log(window);
+// //third modules
 
+// console.log(cetakNama("Gibran Raqqila Firaz"));
 
-const cetakNama = require('./coba');
- //console.log("Hello World!");
+const coba = require('./coba');
 
-console.log(cetakNama("Gibran Raqqila Firaz"));
+console.log(coba.cetakNama("GRF"), 
+'Nilai PI' , 
+coba.PI, 
+coba.mahasiswa.cetakMHS(),
+new coba.Orang()
+);
