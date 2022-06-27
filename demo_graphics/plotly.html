@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Test Plotly</title>
+    </head>
+    <body>
+        <div id="myPlot" style="width: 100%;max-width: 700px;"></div>
+
+
+        <script>
+            const salary = [1000, 2200, 16000, 17000, 2000, 3000, 1200];
+            const time = [1, 1.5, 10, 20, 5, 2, 1];
+
+            let data = [{
+                x : salary,
+                y: time,
+                mode: "maeker",
+            }];
+
+            const layout = {
+                xaxis: {range: [40, 160], title: "Lama Bekerja"},
+                yaxis: {range: [5, 16], title: "Gaji"},
+                title: "Korelasi gaji dan lama bekerja"
+            }
+            
+
+            Plotly.newPlot("myPlot", data, layout);
+        </script>
+
+    </body>
+</html>
