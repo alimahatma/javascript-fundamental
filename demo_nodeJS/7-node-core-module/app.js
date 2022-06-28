@@ -1,29 +1,5 @@
-//core modules
 const fs = require('fs');
-
-//menuliskan string ke file (synchronous)
-// try {
-//     fs.writeFileSync('data/test.txt', 'Gibran Secara Syncronouse!');
-// } catch (error) {
-//     console.log(error);
-    
-// }
-
-
-//menuliskan dtring ke file (asyncronouse)
-// fs.writeFile('data/test.txt','Secara Asyncronouse', (e) => {
-//     console.log(e);
-// });
-
-//membaca isi file (synchronouse)
-// const data= fs.readFileSync('data/test.txt','utf-8');
-// console.log(data);
-
-//membaca file (Asinchronouse)
-// fs.readFile('data/test.txt','utf-8', (err, data) => {
-//     if (err) throw err;
-//     console.log(data);
-// })
+const { resolve } = require('path/posix');
 
 const readline = require('readline');
 const rl = readline.createInterface({
@@ -31,19 +7,41 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-rl.question("Whats is your name: ? ", (nama) => {
-    rl.question("Input your phone number :", (noHP) => {
-       const contact = {nama, noHP};
-       const file = fs.readFileSync('data/contacts.json','utf8');
-       const contacts = JSON.parse(file);
-       contacts.push(contact);
 
-       console.log(contact);
+//membuat folder data jika belum ada
+const dirPath ='./data';
+if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath);
+}
 
-       fs.writeFileSync('data/contacts.json', JSON.stringify(contacts));
-       console.log("terimaksih telah memasukkan data");
-       
-       rl.close();
+const dataPath = './data/contacts.json';
+if (!fs.existsSync(dataPath)) {
+    fs.writeFileSync(dataPath, '[]', 'utf-8');
+}
+
+const tulisPertanyaan = (pertanyaan) => {
+    return new Promise((resolve, reject)=> {
+        rl.question(pertanyaan, (nama) => {
+            resolve(nama);
+        });
     });
-    
-})
+};
+
+const main = async () => {
+    const nama = await tulisPertanyaan('Masukkan Nama Anda : ');
+    const email = await tulisPertanyaan('Masukkan email Anda : ');
+    const noHp = await tulisPertanyaan('Masukkan nomor HP Anda : ');
+
+    const contact = {nama, email, noHp};
+    const fileBuffer = fs.readFileSync('data/contacts.json', 'utf-8');
+    const contacts = JSON.parse(fileBuffer);
+
+    contacts.push(contact);
+    console.log(contact);
+
+    fs.writeFileSync('data/contacts.json', JSON.stringify(contacts));
+    console.log('Terimakasih Anda Telah Berhasil Memasukkan Data..!');
+    rl.close()
+}
+
+main()
